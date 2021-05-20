@@ -12,23 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   featureLinkElems.forEach((elem, index) => {
     elem.addEventListener('click', () => {
-      // featureSubElems.forEach(el => {
-      //   el.classList.add('hidden');
-      // })
-      // featureLinkElems.forEach(el => {
-      //   el.classList.remove('feature__link_active')
-      // })
-
-      if (featureSubElems[index].classList.contains('hidden')) {
-        featureSubElems[index].classList.remove('hidden');
-      } else {
-        featureSubElems[index].classList.add('hidden');
-      }
-      
-      if (!elem.classList.contains('feature__link_active')) {
-        elem.classList.add('feature__link_active');
-      } else {
+      if(elem.classList.contains('feature__link_active')) {
         elem.classList.remove('feature__link_active');
+        featureSubElems[index].classList.add('hidden');
+      } else {
+        featureSubElems.forEach(el => {
+        el.classList.add('hidden');
+        })
+        featureLinkElems.forEach(el => {
+          el.classList.remove('feature__link_active')
+        })
+        featureSubElems[index].classList.remove('hidden');
+        elem.classList.add('feature__link_active');
       }
       
     })
